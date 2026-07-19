@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/admin", "destination": "/index.html" }
+    { "source": "/fortnite", "destination": "/index.html" }
   ]
 }
