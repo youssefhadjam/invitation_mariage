@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <title>Invitation au mariage de Saad &amp; Kenza</title>
+  <meta name="description" content="Invitation officielle au mariage de Saad &amp; Kenza avec une liste de mariage." />
+  <meta property="og:title" content="Invitation au mariage de Saad &amp; Kenza" />
+  <meta property="og:description" content="Invitation officielle au mariage de Saad &amp; Kenza avec une liste de mariage." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f4ede1'/%3E%3Ctext x='50' y='62' font-size='55' text-anchor='middle' fill='%23b08d57'%3E%26%239825;%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body{margin:0;background:#faf6ef;}
+    @keyframes bounceArrow{0%,100%{transform:translateY(0);}50%{transform:translateY(10px);}}
+    @keyframes fadeInScale{from{opacity:0;transform:scale(0.94);}to{opacity:1;transform:scale(1);}}
+  </style>
+</helmet>
+
+<div style="font-family:'Poppins',sans-serif;color:#3a332b;background:#faf6ef;overflow-x:hidden;">
+
+  <section data-seen-key="hero" ref="{{ setRefHero }}" style="position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px 90px;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#efe5d3,#efe5d3 22px,#e6d9c0 22px,#e6d9c0 44px);z-index:0;"></div>
+    <img ref="{{ setHeroImgRef }}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Photo de Saad et Kenza" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:{{ heroImgOpacity }};transition:opacity 0.6s ease;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,32,20,{{ heroOverlayTop }}),rgba(40,32,20,{{ heroOverlayBottom }}));z-index:1;"></div>
+
+    <div style="position:relative;z-index:2;max-width:720px;opacity:{{ heroOpacity }};transform:{{ heroTransform }};transition:opacity 1.1s ease, transform 1.1s ease;">
+      <p style="font-family:'Poppins',sans-serif;letter-spacing:0.35em;text-transform:uppercase;font-size:12px;color:{{ heroTextMuted }};margin:0 0 22px;">{{ texts.heroKicker }}</p>
+      <h1 style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(48px,9vw,88px);margin:0 0 20px;color:{{ heroTextColor }};">Saad <span style="font-style:italic;font-weight:400;color:#c6a25f;">&amp;</span> Kenza</h1>
+      <p style="font-size:18px;line-height:1.7;color:{{ heroTextColor }};max-width:520px;margin:0 auto 30px;font-weight:300;">{{ texts.heroSubtitle }}</p>
+      <div style="display:inline-flex;align-items:center;gap:14px;padding:14px 34px;border:1px solid {{ heroBorderColor }};border-radius:999px;background:{{ heroBadgeBg }};backdrop-filter:blur(6px);">
+        <span style="font-family:'Playfair Display',serif;font-size:24px;letter-spacing:0.06em;color:{{ heroTextColor }};">{{ texts.heroDate }}</span>
+      </div>
+    </div>
+
+    <div style="position:relative;z-index:2;max-width:600px;margin-top:44px;padding:30px 32px;background:rgba(255,252,246,0.9);border-radius:20px;box-shadow:0 20px 50px rgba(80,60,30,0.12);opacity:{{ heroOpacity }};transition:opacity 1.3s ease 0.2s;">
+      <p style="font-size:15px;line-height:1.9;color:#5a5142;margin:0;font-weight:300;white-space:pre-line;">{{ texts.letter }}</p>
+    </div>
+
+    <button aria-label="Défiler vers la liste de mariage" onClick="{{ scrollToList }}" style="position:absolute;bottom:28px;left:50%;transform:translateX(-50%);background:none;border:none;cursor:pointer;z-index:2;color:{{ heroTextColor }};padding:10px;" style-hover="opacity:0.7;">
+      <div style="animation:bounceArrow 2s ease-in-out infinite;font-size:26px;line-height:1;">&#8595;</div>
+    </button>
+  </section>
+
+  <section ref="{{ setRefIntro }}" data-seen-key="intro" style="max-width:760px;margin:0 auto;padding:110px 24px 60px;text-align:center;opacity:{{ introOpacity }};transform:{{ introTransform }};transition:opacity 0.9s ease, transform 0.9s ease;">
+    <h2 style="font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(32px,5vw,46px);margin:0 0 28px;color:#3a332b;">{{ texts.listTitle }}</h2>
+    <p style="font-size:16px;line-height:1.8;color:#6b6355;font-weight:300;max-width:560px;margin:0 auto;white-space:pre-line;">{{ texts.listIntro }}</p>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:20px 24px 120px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:36px;">
+    <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+      <article ref="{{ p.setRef }}" data-seen-key="{{ p.key }}" style="opacity:{{ p.opacity }};transform:{{ p.cardTransform }};transition:opacity 0.8s ease, transform 0.8s ease, box-shadow 0.4s ease;background:#fffdf9;border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(90,70,40,0.08);cursor:pointer;" onClick="{{ p.openModal }}" style-hover="box-shadow:0 26px 55px rgba(90,70,40,0.18);transform:translateY(-8px);" role="button" tabIndex="0" aria-label="Découvrir le projet {{ p.title }}">
+        <div style="position:relative;height:230px;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,#eee3cf,#eee3cf 18px,#e2d3b3 18px,#e2d3b3 36px);display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Courier New',monospace;font-size:12px;color:#8a7a55;background:rgba(255,255,255,0.75);padding:6px 12px;border-radius:8px;">photo : {{ p.alt }}</span>
+          </div>
+          <img ref="{{ p.imgRef }}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="{{ p.alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.7s ease, opacity 0.5s ease;opacity:{{ p.photoOpacity }};" style-hover="transform:scale(1.08);" />
+        </div>
+        <div style="padding:28px 26px 32px;">
+          <h3 style="font-family:'Playfair Display',serif;font-weight:500;font-size:24px;margin:0 0 12px;color:#3a332b;">{{ p.title }}</h3>
+          <p style="font-size:14.5px;line-height:1.75;color:#6b6355;font-weight:300;margin:0 0 22px;">{{ p.desc }}</p>
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:#a3814a;border-bottom:1px solid #d8c69b;padding-bottom:4px;">Découvrir &#8594;</span>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+
+  <footer style="text-align:center;padding:50px 24px 60px;color:#9c9182;font-size:13px;letter-spacing:0.05em;">
+    Avec amour, Saad &amp; Kenza — 04 Septembre 2026
+  </footer>
+
+  <sc-if value="{{ activeProject }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-label="Fenêtre de contribution" onClick="{{ closeModal }}" style="position:fixed;inset:0;background:rgba(35,28,18,0.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50;">
+      <div onClick="{{ stopPropagation }}" style="background:#fffdf9;border-radius:24px;max-width:560px;width:100%;max-height:88vh;overflow-y:auto;padding:40px 36px;position:relative;animation:fadeInScale 0.35s ease;box-shadow:0 40px 90px rgba(60,45,20,0.3);">
+        <button aria-label="Fermer" onClick="{{ closeModal }}" style="position:absolute;top:18px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:#8a7a55;" style-hover="color:#3a332b;">&times;</button>
+        <h3 style="font-family:'Playfair Display',serif;font-size:30px;margin:0 0 18px;color:#3a332b;">Merci &#10084;&#65039;</h3>
+        <h4 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:500;margin:-8px 0 14px;color:#a3814a;">{{ activeProject.title }}</h4>
+        <p style="font-size:15px;line-height:1.8;color:#5a5142;font-weight:300;white-space:pre-line;margin:0 0 30px;">{{ activeProject.thanks }}</p>
+
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px;">
+          <button onClick="{{ chooseMA }}" style="flex:1;min-width:200px;padding:14px 18px;border-radius:14px;border:1px solid {{ borderMA }};background:{{ bgMA }};font-size:14.5px;font-weight:500;cursor:pointer;color:#3a332b;">&#127474;&#127462; Virement depuis le Maroc</button>
+          <button onClick="{{ chooseFR }}" style="flex:1;min-width:200px;padding:14px 18px;border-radius:14px;border:1px solid {{ borderFR }};background:{{ bgFR }};font-size:14.5px;font-weight:500;cursor:pointer;color:#3a332b;">&#127467;&#127479; Virement depuis la France</button>
+        </div>
+
+        <sc-if value="{{ showMA }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#f7f1e3;border-radius:16px;padding:22px 24px;">
+            <h4 style="font-family:'Playfair Display',serif;margin:0 0 14px;font-size:18px;color:#3a332b;">RIB Maroc</h4>
+            <p style="margin:6px 0;font-size:14px;color:#5a5142;"><strong>Titulaire :</strong> {{ ribMA.titulaire }}</p>
+            <p style="margin:6px 0;font-size:14px;color:#5a5142;"><strong>Banque :</strong> {{ ribMA.banque }}</p>
+            <p style="margin:6px 0;font-size:14px;color:#5a5142;"><strong>IBAN :</strong> {{ ribMA.iban }}</p>
+            <p style="margin:6px 0;font-size:14px;color:#5a5142;"><strong>BIC :</strong> {{ ribMA.bic }}</p>
+            <p style="margin:6px 0 16px;font-size:14px;color:#5a5142;"><strong>N° de compte :</strong> {{ ribMA.compte }}</p>
+            <button onClick="{{ copyMA }}" style="padding:10px 20px;border-radius:999px;border:none;background:#c6a25f;color:#fff;font-size:13.5px;font-weight:500;cursor:pointer;" style-hover="background:#b08d4a;">{{ copyLabelMA }}</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showFR }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#f0f2ea;border-radius:16px;padding:22px 24px;">
+            <h4 style="font-family:'Playfair Display',serif;margin:0 0 14px;font-size:18px;color:#3a332b;">RIB France</h4>
+            <p style="margin:6px 0;font-size:14px;color:#5a5142;"><strong>Titulaire :</strong> {{ ribFR.titulaire }}</p>
+            <p style="margin:6px 0;font-size:14px;color:#5a5142;"><strong>Banque :</strong> {{ ribFR.banque }}</p>
+            <p style="margin:6px 0;font-size:14px;color:#5a5142;"><strong>IBAN :</strong> {{ ribFR.iban }}</p>
+            <p style="margin:6px 0;font-size:14px;color:#5a5142;"><strong>BIC :</strong> {{ ribFR.bic }}</p>
+            <p style="margin:6px 0 16px;font-size:14px;color:#5a5142;"><strong>N° de compte :</strong> {{ ribFR.compte }}</p>
+            <button onClick="{{ copyFR }}" style="padding:10px 20px;border-radius:999px;border:none;background:#8fa377;color:#fff;font-size:13.5px;font-weight:500;cursor:pointer;" style-hover="background:#7c8f64;">{{ copyLabelFR }}</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+  <button onClick="{{ toggleAdmin }}" aria-label="Ouvrir le panneau d'administration" style="position:fixed;bottom:20px;right:20px;background:#3a332b;color:#f4ede1;border:none;border-radius:999px;padding:10px 18px;font-size:12.5px;letter-spacing:0.05em;cursor:pointer;z-index:60;opacity:0.75;" style-hover="opacity:1;">Admin</button>
+
+  <sc-if value="{{ adminOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;background:rgba(35,28,18,0.6);z-index:70;display:flex;align-items:center;justify-content:center;padding:20px;" onClick="{{ toggleAdmin }}">
+      <div onClick="{{ stopPropagation }}" style="background:#fffdf9;border-radius:20px;max-width:560px;width:100%;max-height:85vh;overflow-y:auto;padding:32px;position:relative;">
+        <button aria-label="Fermer le panneau" onClick="{{ toggleAdmin }}" style="position:absolute;top:16px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;color:#8a7a55;">&times;</button>
+        <h3 style="font-family:'Playfair Display',serif;margin:0 0 6px;font-size:22px;color:#3a332b;">Panneau d'administration</h3>
+        <p style="font-size:12.5px;color:#8a7a55;line-height:1.6;margin:0 0 20px;">Ces modifications sont enregistrées uniquement sur cet appareil/navigateur. Pour qu'elles s'affichent chez tous vos invités, reportez-les définitivement dans le code avant de publier le site.</p>
+
+        <div style="display:flex;gap:10px;margin-bottom:24px;border-bottom:1px solid #efe6d6;">
+          <button onClick="{{ setAdminTabPhotos }}" style="padding:10px 4px 12px;background:none;border:none;border-bottom:2px solid {{ tabPhotosBorder }};font-size:13.5px;font-weight:500;cursor:pointer;color:{{ tabPhotosColor }};">Photos</button>
+          <button onClick="{{ setAdminTabTextes }}" style="padding:10px 4px 12px;background:none;border:none;border-bottom:2px solid {{ tabTextesBorder }};font-size:13.5px;font-weight:500;cursor:pointer;color:{{ tabTextesColor }};">Textes</button>
+        </div>
+
+        <sc-if value="{{ isPhotosTab }}" hint-placeholder-val="{{ true }}">
+          <sc-for list="{{ photoSlots }}" as="slot" hint-placeholder-count="4">
+            <div style="margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid #efe6d6;">
+              <p style="font-size:13.5px;font-weight:500;margin:0 0 10px;color:#3a332b;">{{ slot.label }}</p>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:64px;height:64px;border-radius:10px;overflow:hidden;flex-shrink:0;background:#f0e9d8;">
+                  <img ref="{{ slot.imgRef }}" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Aperçu {{ slot.label }}" style="width:100%;height:100%;object-fit:cover;opacity:{{ slot.previewOpacity }};" />
+                </div>
+                <input type="file" accept="image/*" onChange="{{ slot.onFile }}" aria-label="Choisir une photo pour {{ slot.label }}" style="font-size:12.5px;flex:1;" />
+                <button onClick="{{ slot.onClear }}" style="font-size:12px;background:none;border:1px solid #d8c69b;border-radius:8px;padding:6px 10px;cursor:pointer;color:#8a7a55;">Retirer</button>
+              </div>
+            </div>
+          </sc-for>
+        </sc-if>
+
+        <sc-if value="{{ isTextesTab }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <label style="font-size:12.5px;color:#3a332b;font-weight:500;">Sur-titre (accueil)
+              <input value="{{ texts.heroKicker }}" onChange="{{ fieldHeroKicker }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;" />
+            </label>
+            <label style="font-size:12.5px;color:#3a332b;font-weight:500;">Sous-titre (accueil)
+              <textarea rows="2" value="{{ texts.heroSubtitle }}" onChange="{{ fieldHeroSubtitle }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;font-family:inherit;"></textarea>
+            </label>
+            <label style="font-size:12.5px;color:#3a332b;font-weight:500;">Date affichée
+              <input value="{{ texts.heroDate }}" onChange="{{ fieldHeroDate }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;" />
+            </label>
+            <label style="font-size:12.5px;color:#3a332b;font-weight:500;">Lettre aux invités
+              <textarea rows="6" value="{{ texts.letter }}" onChange="{{ fieldLetter }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;font-family:inherit;"></textarea>
+            </label>
+            <label style="font-size:12.5px;color:#3a332b;font-weight:500;">Titre section liste
+              <input value="{{ texts.listTitle }}" onChange="{{ fieldListTitle }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;" />
+            </label>
+            <label style="font-size:12.5px;color:#3a332b;font-weight:500;">Texte d'intro liste
+              <textarea rows="3" value="{{ texts.listIntro }}" onChange="{{ fieldListIntro }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;font-family:inherit;"></textarea>
+            </label>
+
+            <sc-for list="{{ projectFields }}" as="pf" hint-placeholder-count="3">
+              <div style="border-top:1px solid #efe6d6;padding-top:16px;">
+                <p style="font-size:13.5px;font-weight:600;margin:0 0 12px;color:#a3814a;">{{ pf.label }}</p>
+                <label style="font-size:12.5px;color:#3a332b;font-weight:500;display:block;margin-bottom:12px;">Titre
+                  <input value="{{ pf.title }}" onChange="{{ pf.onTitle }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;" />
+                </label>
+                <label style="font-size:12.5px;color:#3a332b;font-weight:500;display:block;margin-bottom:12px;">Description (carte)
+                  <textarea rows="3" value="{{ pf.desc }}" onChange="{{ pf.onDesc }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;font-family:inherit;"></textarea>
+                </label>
+                <label style="font-size:12.5px;color:#3a332b;font-weight:500;display:block;">Message de remerciement
+                  <textarea rows="4" value="{{ pf.thanks }}" onChange="{{ pf.onThanks }}" style="width:100%;margin-top:6px;padding:9px 10px;border:1px solid #e6dbc2;border-radius:8px;font-size:13.5px;box-sizing:border-box;font-family:inherit;"></textarea>
+                </label>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {
+  DEFAULT_TEXTS = {
+    heroKicker: 'Nous nous marions',
+    heroSubtitle: "Nous avons l'immense bonheur de vous inviter à célébrer notre mariage.",
+    heroDate: '04 Septembre 2026',
+    letter: "Chère famille, chers amis,\n\nVotre présence à nos côtés est déjà le plus beau des cadeaux.\n\nSi vous souhaitez nous accompagner davantage dans cette nouvelle aventure, nous avons imaginé une petite liste de mariage. Chaque participation, quelle qu'elle soit, contribuera à construire les premiers souvenirs de notre vie à deux.\n\nMerci du fond du cœur pour votre amour, votre soutien et votre générosité. Nous avons hâte de partager cette journée exceptionnelle avec vous.",
+    listTitle: 'Notre liste de mariage',
+    listIntro: "Si vous souhaitez nous faire plaisir, nous avons sélectionné trois projets qui nous tiennent particulièrement à cœur. Cliquez simplement sur celui auquel vous souhaitez contribuer.",
+    projects: {
+      thermomix: { title: 'Notre futur Thermomix', desc: "Pour débuter notre vie à deux autour de bons petits plats, nous rêvons d'un Thermomix qui accompagnera nos moments en cuisine pendant de nombreuses années.", thanks: "Merci infiniment de participer à ce beau projet.\n\nChaque contribution nous rapproche un peu plus de ce compagnon de cuisine qui nous permettra de partager de délicieux repas en famille et entre amis.\n\nVotre générosité fera partie de nos premiers souvenirs de jeunes mariés." },
+      voyage: { title: 'Notre voyage de noces', desc: "Nous rêvons de commencer cette nouvelle aventure par un voyage inoubliable afin de créer nos tout premiers souvenirs de jeunes mariés.", thanks: "Merci de participer à notre voyage de noces.\n\nGrâce à votre générosité, nous pourrons vivre des moments uniques, découvrir de nouveaux paysages et commencer notre vie de couple avec des souvenirs qui resteront gravés à jamais.\n\nChaque contribution compte énormément pour nous." },
+      salon: { title: 'Notre futur salon', desc: "Nous aimerions aménager notre premier foyer avec une belle télévision qui accompagnera nos soirées cinéma, nos moments de détente et nos futurs souvenirs en famille.", thanks: "Merci de contribuer à notre futur chez-nous.\n\nCette télévision fera partie de notre premier cocon et nous rappellera que notre famille et nos amis ont participé à construire notre bonheur.\n\nMerci infiniment pour votre soutien." }
+    }
+  };
+
+  state = { seen: {}, photos: {}, texts: JSON.parse(JSON.stringify(this.DEFAULT_TEXTS)), activeKey: null, country: null, copied: null, adminOpen: false, adminTab: 'photos' };
+  els = {};
+  refFns = {};
+
+  RIB = {
+    MA: { titulaire: 'Saad El Amrani', banque: 'Attijariwafa Bank', iban: 'MA64 0000 0000 0000 0000 0000 000', bic: 'BCMAMAMC', compte: '000 000 000 000 000 000 00' },
+    FR: { titulaire: 'Saad & Kenza', banque: 'BNP Paribas', iban: 'FR76 0000 0000 0000 0000 0000 000', bic: 'BNPAFRPP', compte: '00000000000' }
+  };
+
+  PROJECTS = [
+    { key: 'thermomix', alt: 'Thermomix' },
+    { key: 'voyage', alt: 'Voyage de noces' },
+    { key: 'salon', alt: 'Télévision géante' }
+  ];
+
+  deepMerge(base, override) {
+    if (!override || typeof override !== 'object') return base;
+    const out = Array.isArray(base) ? [...base] : { ...base };
+    Object.keys(override).forEach((k) => {
+      if (override[k] && typeof override[k] === 'object' && !Array.isArray(override[k]) && base[k]) {
+        out[k] = this.deepMerge(base[k], override[k]);
+      } else {
+        out[k] = override[k];
+      }
+    });
+    return out;
+  }
+
+  saveTexts(texts) {
+    this.setState({ texts });
+    try { localStorage.setItem('skwedding_texts', JSON.stringify(texts)); } catch (e) {}
+  }
+
+  setText(path, value) {
+    const texts = JSON.parse(JSON.stringify(this.state.texts));
+    let obj = texts;
+    for (let i = 0; i < path.length - 1; i++) obj = obj[path[i]];
+    obj[path[path.length - 1]] = value;
+    this.saveTexts(texts);
+  }
+
+  fieldHandler(path) {
+    return (e) => this.setText(path, e.target.value);
+  }
+
+  BLANK = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
+  imgEls = {};
+  imgRefFns = {};
+
+  getImgRef(key) {
+    if (!this.imgRefFns[key]) this.imgRefFns[key] = (el) => { if (el) this.imgEls[key] = el; };
+    return this.imgRefFns[key];
+  }
+
+  applyPhotosToDom(photos) {
+    if (this.imgEls.hero) this.imgEls.hero.src = photos.hero || this.BLANK;
+    this.PROJECTS.forEach((p) => { if (this.imgEls[p.key]) this.imgEls[p.key].src = photos[p.key] || this.BLANK; });
+    ['hero', 'thermomix', 'voyage', 'salon'].forEach((k) => { if (this.imgEls['slot_' + k]) this.imgEls['slot_' + k].src = photos[k] || this.BLANK; });
+  }
+
+  componentDidMount() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('skwedding_photos') || '{}');
+      this.setState({ photos: saved });
+      this.applyPhotosToDom(saved);
+    } catch (e) {}
+    try {
+      const savedTexts = JSON.parse(localStorage.getItem('skwedding_texts') || 'null');
+      if (savedTexts) this.setState({ texts: this.deepMerge(this.DEFAULT_TEXTS, savedTexts) });
+    } catch (e) {}
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          const k = en.target.dataset.seenKey;
+          if (k) this.setState((s) => ({ seen: { ...s.seen, [k]: true } }));
+        }
+      });
+    }, { threshold: 0.15 });
+    Object.keys(this.els).forEach((k) => this.els[k] && this.io.observe(this.els[k]));
+  }
+
+  getRef(key) {
+    if (!this.refFns[key]) {
+      this.refFns[key] = (el) => { if (el) { this.els[key] = el; if (this.io) this.io.observe(el); } };
+    }
+    return this.refFns[key];
+  }
+
+  savePhotos(photos) {
+    this.setState({ photos });
+    this.applyPhotosToDom(photos);
+    try { localStorage.setItem('skwedding_photos', JSON.stringify(photos)); } catch (e) {}
+  }
+
+  onFile(key) {
+    return (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => this.savePhotos({ ...this.state.photos, [key]: reader.result });
+      reader.readAsDataURL(file);
+    };
+  }
+
+  clearPhoto(key) {
+    return () => { const p = { ...this.state.photos }; delete p[key]; this.savePhotos(p); };
+  }
+
+  copyText(text, tag) {
+    return () => {
+      const done = () => { this.setState({ copied: tag }); setTimeout(() => this.setState({ copied: null }), 2000); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else { done(); }
+    };
+  }
+
+  renderVals() {
+    const seen = this.state.seen;
+    const heroSeen = true;
+    const introSeen = !!seen.intro;
+    const photos = this.state.photos || {};
+
+    const texts = this.state.texts;
+    const projects = this.PROJECTS.map((p) => ({
+      ...p,
+      title: texts.projects[p.key].title,
+      desc: texts.projects[p.key].desc,
+      photoOpacity: photos[p.key] ? 1 : 0,
+      imgRef: this.getImgRef(p.key),
+      setRef: this.getRef(p.key),
+      opacity: seen[p.key] ? 1 : 0,
+      cardTransform: seen[p.key] ? 'translateY(0)' : 'translateY(28px)',
+      openModal: () => this.setState({ activeKey: p.key, country: null })
+    }));
+
+    const activeProjectRaw = this.PROJECTS.find((p) => p.key === this.state.activeKey);
+    const activeProject = activeProjectRaw ? { title: texts.projects[activeProjectRaw.key].title, thanks: texts.projects[activeProjectRaw.key].thanks } : null;
+
+    const projectFields = this.PROJECTS.map((p) => ({
+      key: p.key,
+      label: texts.projects[p.key].title,
+      title: texts.projects[p.key].title,
+      desc: texts.projects[p.key].desc,
+      thanks: texts.projects[p.key].thanks,
+      onTitle: this.fieldHandler(['projects', p.key, 'title']),
+      onDesc: this.fieldHandler(['projects', p.key, 'desc']),
+      onThanks: this.fieldHandler(['projects', p.key, 'thanks'])
+    }));
+
+    const slotDef = (key, label) => ({ key, label, previewOpacity: photos[key] ? 1 : 0, imgRef: this.getImgRef('slot_' + key), onFile: this.onFile(key), onClear: this.clearPhoto(key) });
+    const photoSlots = [
+      slotDef('hero', 'Photo de fond (accueil)'),
+      slotDef('thermomix', 'Photo — Thermomix'),
+      slotDef('voyage', 'Photo — Voyage de noces'),
+      slotDef('salon', 'Photo — Futur salon')
+    ];
+
+    return {
+      setRefHero: this.getRef('hero'),
+      setRefIntro: this.getRef('intro'),
+      setHeroImgRef: this.getImgRef('hero'),
+      heroImgOpacity: photos.hero ? 1 : 0,
+      heroOverlayTop: photos.hero ? 0.35 : 0.15,
+      heroOverlayBottom: photos.hero ? 0.55 : 0.4,
+      heroOpacity: heroSeen ? 1 : 0,
+      heroTransform: 'translateY(0)',
+      heroTextColor: photos.hero ? '#fbf6ec' : '#3a332b',
+      heroTextMuted: photos.hero ? 'rgba(251,246,236,0.85)' : '#8a7a55',
+      heroBorderColor: photos.hero ? 'rgba(251,246,236,0.5)' : '#d8c69b',
+      heroBadgeBg: photos.hero ? 'rgba(255,255,255,0.12)' : 'rgba(255,255,255,0.6)',
+      scrollToList: () => { const el = this.els.intro; if (el) el.scrollIntoView({ behavior: 'smooth' }); },
+      introOpacity: introSeen ? 1 : 0,
+      introTransform: introSeen ? 'translateY(0)' : 'translateY(24px)',
+      projects,
+      activeProject,
+      closeModal: () => this.setState({ activeKey: null, country: null }),
+      stopPropagation: (e) => e.stopPropagation(),
+      chooseMA: () => this.setState((s) => ({ country: s.country === 'ma' ? null : 'ma' })),
+      chooseFR: () => this.setState((s) => ({ country: s.country === 'fr' ? null : 'fr' })),
+      showMA: this.state.country === 'ma',
+      showFR: this.state.country === 'fr',
+      borderMA: this.state.country === 'ma' ? '#c6a25f' : '#e6dbc2',
+      borderFR: this.state.country === 'fr' ? '#8fa377' : '#e0e6d6',
+      bgMA: this.state.country === 'ma' ? '#f7f1e3' : '#fffdf9',
+      bgFR: this.state.country === 'fr' ? '#f0f2ea' : '#fffdf9',
+      ribMA: this.RIB.MA,
+      ribFR: this.RIB.FR,
+      copyMA: this.copyText(this.RIB.MA.iban, 'MA'),
+      copyFR: this.copyText(this.RIB.FR.iban, 'FR'),
+      copyLabelMA: this.state.copied === 'MA' ? 'Copié !' : "Copier l'IBAN",
+      copyLabelFR: this.state.copied === 'FR' ? 'Copié !' : "Copier l'IBAN",
+      adminOpen: this.state.adminOpen,
+      toggleAdmin: () => this.setState((s) => ({ adminOpen: !s.adminOpen })),
+      photoSlots,
+      texts,
+      projectFields,
+      isPhotosTab: this.state.adminTab === 'photos',
+      isTextesTab: this.state.adminTab === 'textes',
+      setAdminTabPhotos: () => this.setState({ adminTab: 'photos' }),
+      setAdminTabTextes: () => this.setState({ adminTab: 'textes' }),
+      tabPhotosBorder: this.state.adminTab === 'photos' ? '#c6a25f' : 'transparent',
+      tabTextesBorder: this.state.adminTab === 'textes' ? '#c6a25f' : 'transparent',
+      tabPhotosColor: this.state.adminTab === 'photos' ? '#3a332b' : '#8a7a55',
+      tabTextesColor: this.state.adminTab === 'textes' ? '#3a332b' : '#8a7a55',
+      fieldHeroKicker: this.fieldHandler(['heroKicker']),
+      fieldHeroSubtitle: this.fieldHandler(['heroSubtitle']),
+      fieldHeroDate: this.fieldHandler(['heroDate']),
+      fieldLetter: this.fieldHandler(['letter']),
+      fieldListTitle: this.fieldHandler(['listTitle']),
+      fieldListIntro: this.fieldHandler(['listIntro'])
+    };
+  }
+}
+
+</script>
+</body>
+</html>
